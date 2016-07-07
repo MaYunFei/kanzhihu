@@ -1,13 +1,20 @@
 package com.yunfei.mvp;
 
-import rx.Subscriber;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
 /**
  * Created by yunfei on 16/7/5.
  */
-public abstract class BasePresenter implements IBasePresenter {
+public abstract class BasePresenter<T extends IView> implements IPresenter {
+
+    protected T mView;
+
+    public BasePresenter(T view) {
+        mView = view;
+    }
+
+    //保证生命周期内存不泄露
     protected CompositeSubscription mCompositeSubscription;
 
     public void addSubscription(Subscription s) {
@@ -27,31 +34,11 @@ public abstract class BasePresenter implements IBasePresenter {
     @Override
     public void unsubscribe() {
         unSubscription();
+        mView = null;
     }
 
-    protected abstract ILoading getLoadingView();
-
-    public abstract class LoadingSubscriber<T> extends Subscriber<T> {
-
-        @Override
-        public void onStart() {
-            super.onStart();
-            getLoadingView().showLoading();
-        }
-
-        @Override
-        public void onCompleted() {
-            getLoadingView().hideLoading();
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            getLoadingView().hideLoading();
-            getLoadingView().onError(e);
-        }
 
 
-    }
 
 
 }

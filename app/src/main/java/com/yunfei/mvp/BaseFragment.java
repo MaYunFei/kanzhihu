@@ -15,24 +15,49 @@ import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by yunfei on 16/7/4.
  */
-public abstract class BaseFragment extends Fragment implements ILoading {
+public abstract class BaseFragment<T extends IPresenter> extends Fragment implements ILoading, IView {
 
-
+    protected T mPresenter;
     private static final String TAG = "BaseFragment";
+    //ButterKnife unBind
+    private Unbinder mUnbinder;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(getLayout(), container, false);
-        ButterKnife.bind(this, root);
-        return root;
+        return inflater.inflate(getLayout(), container, false);
     }
 
-    protected abstract int getLayout();
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mPresenter = getPresenter();
+        initEventAndData();
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mUnbinder = ButterKnife.bind(this, view);
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.unsubscribe();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mUnbinder.unbind();
+    }
 
     @Override
     public void onResume() {
@@ -44,13 +69,13 @@ public abstract class BaseFragment extends Fragment implements ILoading {
     @Override
     public void showLoading() {
         ToastUtil.showShortToast(this, "showLoading");
-        KLog.i(TAG, "show "+Thread.currentThread().getName());
+        KLog.i(TAG, "show " + Thread.currentThread().getName());
     }
 
     @Override
     public void hideLoading() {
         ToastUtil.showShortToast(this, "hideLoading");
-        KLog.i(TAG, "hide "+Thread.currentThread().getName());
+        KLog.i(TAG, "hide " + Thread.currentThread().getName());
     }
 
     @Override
@@ -67,4 +92,11 @@ public abstract class BaseFragment extends Fragment implements ILoading {
     protected void showServerError(String message) {
         ToastUtil.showShortToast(this, message);
     }
+
+
+    protected abstract T getPresenter();
+
+    protected abstract int getLayout();
+
+    protected abstract void initEventAndData();
 }
