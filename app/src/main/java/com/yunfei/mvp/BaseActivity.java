@@ -16,6 +16,7 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
     protected Context mContext;
 
     private Unbinder mUnbinder;
+    protected final String TAG = getClass().getSimpleName();
 
 
     @Override
@@ -31,7 +32,9 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mPresenter.unsubscribe();
+        if (mPresenter != null) {
+            mPresenter.unsubscribe();
+        }
         mUnbinder.unbind();
     }
 

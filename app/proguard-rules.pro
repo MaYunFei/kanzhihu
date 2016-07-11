@@ -15,3 +15,11 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+-dontwarn com.squareup.okhttp.**
+
+
+#efficientadapter
+-keepclassmembers public class * extends com.skocken.efficientadapter.lib.viewholder.EfficientViewHolder {
+    public <init>(...);
+}

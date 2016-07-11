@@ -20,7 +20,7 @@ import butterknife.Unbinder;
 /**
  * Created by yunfei on 16/7/4.
  */
-public abstract class BaseFragment<T extends IPresenter> extends Fragment implements ILoading, IView {
+public abstract class BaseFragment<T extends IPresenter> extends Fragment implements ILoadingView, IView {
 
     protected T mPresenter;
     private static final String TAG = "BaseFragment";

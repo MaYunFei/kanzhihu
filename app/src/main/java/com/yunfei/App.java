@@ -1,14 +1,13 @@
 package com.yunfei;
 
-import android.app.Application;
-
 import com.socks.library.KLog;
+import com.yunfei.base.BaseApp;
 import com.yunfei.kanzhihu.BuildConfig;
 
 /**
  * Created by yunfei on 16/7/4.
  */
-public class App extends Application {
+public class App extends BaseApp {
     @Override
     public void onCreate() {
         super.onCreate();

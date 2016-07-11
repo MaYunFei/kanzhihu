@@ -17,6 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".post_answers.PostAnswersActivity"/>
+        <activity android:name=".web.WebActivity"/>
     </application>
 
 </manifest>

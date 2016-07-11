@@ -1,7 +1,7 @@
 package com.yunfei.kanzhihu.home;
 
 import com.yunfei.kanzhihu.bean.CheckNew;
-import com.yunfei.kanzhihu.bean.Getposts;
+import com.yunfei.kanzhihu.bean.Posts;
 import com.yunfei.net.RetrofitUtil;
 
 import rx.Observable;
@@ -18,7 +18,7 @@ public class HomeModel extends RetrofitUtil {
     }
 
 
-    public Observable<Getposts> getPosts(String time) {
+    public Observable<Posts> getPosts(String time) {
         return getApi().getposts(time)
                 .compose(applySchedulers());
     }

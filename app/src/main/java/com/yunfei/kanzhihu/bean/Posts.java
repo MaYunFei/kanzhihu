@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by yunfei on 16/7/5.
  */
-public class Getposts extends Response {
+public class Posts extends Response {
 
     /**
      * error :

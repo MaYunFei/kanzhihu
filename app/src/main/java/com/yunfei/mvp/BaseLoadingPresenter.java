@@ -5,7 +5,7 @@ import rx.Subscriber;
 /**
  * Created by yunfei on 16/7/7.
  */
-public abstract class BaseLoadingPresenter<T extends ILoading> extends BasePresenter<T> {
+public abstract class BaseLoadingPresenter<T extends ILoadingView> extends BasePresenter<T> {
     public BaseLoadingPresenter(T view) {
         super(view);
     }

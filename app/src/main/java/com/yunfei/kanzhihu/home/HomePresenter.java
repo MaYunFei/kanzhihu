@@ -1,6 +1,6 @@
 package com.yunfei.kanzhihu.home;
 
-import com.yunfei.kanzhihu.bean.Getposts;
+import com.yunfei.kanzhihu.bean.Posts;
 import com.yunfei.mvp.BaseLoadingPresenter;
 
 /**
@@ -17,10 +17,10 @@ public class HomePresenter extends BaseLoadingPresenter<HomeContract.View> imple
     @Override
     public void subscribe() {
         mModel.getPosts("")
-                .subscribe(new LoadingSubscriber<Getposts>() {
+                .subscribe(new LoadingSubscriber<Posts>() {
                     @Override
-                    public void onNext(Getposts getposts) {
-
+                    public void onNext(Posts getposts) {
+                        mView.loadData(getposts.getPosts());
                     }
                 });
     }

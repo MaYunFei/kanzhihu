@@ -3,7 +3,7 @@ package com.yunfei.mvp;
 /**
  * Created by yunfei on 16/7/4.
  */
-public interface ILoading extends IView{
+public interface ILoadingView extends IView{
     void showLoading();
 
     void hideLoading();
