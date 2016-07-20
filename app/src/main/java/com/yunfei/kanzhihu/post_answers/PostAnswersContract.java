@@ -1,6 +1,6 @@
 package com.yunfei.kanzhihu.post_answers;
 
-import com.yunfei.kanzhihu.bean.Posts;
+import com.yunfei.kanzhihu.bean.PostAnswers;
 import com.yunfei.mvp.ILoadingView;
 import com.yunfei.mvp.IPresenter;
 
@@ -12,7 +12,7 @@ import java.util.List;
 public class PostAnswersContract {
     public interface View extends ILoadingView {
 
-        void loadData(List<Posts.PostsEntity> data);
+        void loadData(List<PostAnswers.AnswersEntity> data);
 
     }
 

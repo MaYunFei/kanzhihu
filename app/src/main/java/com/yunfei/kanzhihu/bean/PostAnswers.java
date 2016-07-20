@@ -1,11 +1,13 @@
 package com.yunfei.kanzhihu.bean;
 
+import com.yunfei.net.Response;
+
 import java.util.List;
 
 /**
  * Created by yunfei on 16/7/10.
  */
-public class PostAnswers {
+public class PostAnswers extends Response {
 
     /**
      * error :

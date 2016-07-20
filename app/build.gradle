@@ -68,4 +68,6 @@ dependencies {
     //快速创建 Create a new adapter for a RecyclerView or ViewPager is now much easier.
     //https://github.com/StanKocken/EfficientAdapter
     compile 'com.skocken:efficientadapter:2.1.0'
+    //各种图形图片
+    compile 'jp.wasabeef:picasso-transformations:2.1.0'
 }

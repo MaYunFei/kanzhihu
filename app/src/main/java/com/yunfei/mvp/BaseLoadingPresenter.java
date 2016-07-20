@@ -1,5 +1,7 @@
 package com.yunfei.mvp;
 
+import com.yunfei.net.Response;
+
 import rx.Subscriber;
 
 /**
@@ -12,10 +14,10 @@ public abstract class BaseLoadingPresenter<T extends ILoadingView> extends BaseP
 
     /**
      * 方便 loading
-     *
+     * 强制 限制 必须继承Response
      * @param <T>
      */
-    public abstract class LoadingSubscriber<T> extends Subscriber<T> {
+    public abstract class LoadingSubscriber<T extends Response> extends Subscriber<T> {
 
         @Override
         public void onStart() {

@@ -2,6 +2,7 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
@@ -13,9 +14,12 @@
         android:orientation="vertical">
 
         <TextView
+            tools:text="title"
+            android:textSize="15sp"
             android:id="@+id/tv_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"/>
 
         <ImageView
             android:id="@+id/iv_pic"
@@ -25,10 +29,10 @@
             android:scaleType="fitCenter"
             />
 
-        <TextView
-            android:id="@+id/tv_excerpt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        <!--<TextView-->
+        <!--android:id="@+id/tv_excerpt"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"/>-->
     </LinearLayout>
 
 

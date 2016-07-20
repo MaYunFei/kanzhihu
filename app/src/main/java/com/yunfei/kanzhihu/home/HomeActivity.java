@@ -1,6 +1,5 @@
 package com.yunfei.kanzhihu.home;
 
-import android.content.Intent;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,8 +16,9 @@ import com.yunfei.base.BaseApp;
 import com.yunfei.base.BaseRecyclerAdapter;
 import com.yunfei.kanzhihu.R;
 import com.yunfei.kanzhihu.bean.Posts;
-import com.yunfei.kanzhihu.web.WebActivity;
+import com.yunfei.kanzhihu.post_answers.PostAnswersActivity;
 import com.yunfei.mvp.BaseLoadingActivity;
+import com.yunfei.utils.TimeUtil;
 
 import java.util.List;
 
@@ -65,10 +65,8 @@ public class HomeActivity extends BaseLoadingActivity<HomePresenter> implements 
         }
 
         mAdapter.setOnItemClickListener((postsEntity, position) -> {
-//            PostAnswersActivity.startActivity(mContext, TimeUtil.getDateParm(postsEntity.getDate()), postsEntity.getName());
-                    Intent intent = new Intent(this, WebActivity.class);
-            startActivity(intent);
-        }
+                    PostAnswersActivity.startActivity(mContext, TimeUtil.getDateParm(postsEntity.getDate()), postsEntity.getName());
+                }
         );
 
     }
@@ -98,12 +96,11 @@ public class HomeActivity extends BaseLoadingActivity<HomePresenter> implements 
             }
         }
 
-
         @Override
         protected void onBindItemViewHolder(HomeViewHolder holder, Posts.PostsEntity postsEntity, int position) {
             Picasso.with(holder.mPic.getContext()).load(postsEntity.getPic()).into(holder.mPic);
 //            holder.mExcerpt.setText(postsEntity.getExcerpt());
-            holder.mName.setText(parseName(postsEntity.getName()));
+            holder.mName.setText(TimeUtil.FriendlyDate(postsEntity.getDate()) + " " + parseName(postsEntity.getName()));
             holder.mContent.setOnClickListener(v -> {
                 if (onItemClickListener != null) {
                     onItemClickListener.onItemClick(postsEntity, position);
@@ -131,8 +128,8 @@ public class HomeActivity extends BaseLoadingActivity<HomePresenter> implements 
             TextView mName;
             @BindView(R.id.iv_pic)
             ImageView mPic;
-            @BindView(R.id.tv_excerpt)
-            TextView mExcerpt;
+//            @BindView(R.id.tv_excerpt)
+//            TextView mExcerpt;
 
             View mContent;
 
